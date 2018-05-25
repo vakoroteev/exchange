@@ -1,5 +1,3 @@
-import java.util.Currency;
-
 public class AccountManager {
     private ExchangeCurrency exchangeCurrency = new ExchangeCurrency();
     private double amount;
