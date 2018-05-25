@@ -3,83 +3,67 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Main {
+
     public static void main(String[] args) throws IOException {
 
         Help help = new Help();
+        Account account = null;
         AccountManager accountManager = new AccountManager();
         DepositCurrency depositCurrency = new DepositCurrency();
         ExchangeCurrency exchangeCurrency = new ExchangeCurrency();
-        Account account = new Account();
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
         Boolean flagExit = true;
-        Boolean isAccountCreated = false;
-        String allString;
-        String[] str;
-        double amount;
+        String[] inputConsole;
 
-        help.help();
+        help.printHelp();
 
         while (flagExit) {
 
-            allString = reader.readLine();
-            str = allString.split(" ");
-
-            switch (str[0]) {
+            inputConsole = inputReader(reader);
+            switch (inputConsole[0]) {
                 case "help":
-                    help.help();
+                    help.printHelp();
                     break;
                 case "createAccount":
                     account = new Account();
-                    isAccountCreated = true;
                     break;
                 case "accountStatusAll" :
-                    if (isAccountCreated) {
-                        accountManager.getCurrentAccountAllStatus(account);
-                    } else {
-                        System.out.println("Необходимо создать счет");
-                    }
+                    accountManager.getCurrentAccountAllStatus(account);
                     break;
                 case "accountStatusRub" :
-                    if (isAccountCreated) {
-                        accountManager.getCurrentAccountRubStatus(account);
-                    } else {
-                        System.out.println("Необходимо создать счет");
-                    }
+                    accountManager.getCurrentAccountRubStatus(account);
                     break;
                 case "accountStatusUsd" :
-                    if (isAccountCreated) {
-                        accountManager.getCurrentAccountUsdStatus(account);
-                    } else {
-                        System.out.println("Необходимо создать счет");
-                    }
+                    accountManager.getCurrentAccountUsdStatus(account);
                     break;
                 case "accountStatusEur" :
-                    if (isAccountCreated) {
-                        accountManager.getCurrentAccountEurStatus(account);
-                    } else {
-                        System.out.println("Необходимо создать счет");
-                    }
+                    accountManager.getCurrentAccountEurStatus(account);
                     break;
                 case "depositRub" :
-                    if (isAccountCreated) {
-                        amount = Double.parseDouble(str[1]);
-                        depositCurrency.depositRub(account, amount);
-                    } else {
-                        System.out.println("Необходимо создать счет");
-                    }
+                    depositCurrency.depositRub(account, amountCurrency(inputConsole[1]));
                     break;
                 case "exchangeRate" :
                     exchangeCurrency.getExchangeRate();
                     break;
-                case "purchaseCurrency" :
-                    if (isAccountCreated) {
-                        amount = Double.parseDouble(str[1]);
-                        accountManager.purchaseCurrency(account, amount, str[2], str[3]);
-                    } else {
-                        System.out.println("Необходимо создать счет");
-                    }
+                case "purchaseRubUsd" :
+                    accountManager.purchaseRubUsd(account, amountCurrency(inputConsole[1]));
+                    break;
+                case "purchaseUsdRub" :
+                    accountManager.purchaseUsdRub(account, amountCurrency(inputConsole[1]));
+                    break;
+                case "purchaseRubEur" :
+                    accountManager.purchaseRubEur(account, amountCurrency(inputConsole[1]));
+                    break;
+                case "purchaseEurRub" :
+                    accountManager.purchaseEurRub(account, amountCurrency(inputConsole[1]));
+                    break;
+                case "purchaseUsdEur" :
+                    accountManager.purchaseUsdEur(account, amountCurrency(inputConsole[1]));
+                    break;
+                case "purchaseEurUsd" :
+                    accountManager.purchaseEurUsd(account, amountCurrency(inputConsole[1]));
                     break;
                 case "exit":
                     flagExit = false;
@@ -87,8 +71,19 @@ public class Main {
                 default :
                     System.out.println("Данная команда не поддерживается. Для ввывода списка команд введите help");
                     break;
-
             }
         }
+    }
+
+    private static String[] inputReader(BufferedReader reader) throws IOException {
+        String allString;
+        String[] str;
+        allString = reader.readLine();
+        str = allString.split(" ");
+        return str;
+    }
+
+    private static double amountCurrency (String stringAmountCorrency) {
+        return Double.parseDouble(stringAmountCorrency);
     }
 }

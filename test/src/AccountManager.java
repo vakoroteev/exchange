@@ -1,75 +1,124 @@
+import java.util.Currency;
+
 public class AccountManager {
     private ExchangeCurrency exchangeCurrency = new ExchangeCurrency();
     private double amount;
 
     public void getCurrentAccountAllStatus (Account account) {
-        System.out.println(account.getRub() + " RUB");
-        System.out.println(account.getUsd() + " USD");
-        System.out.println(account.getEur() + " EUR");
+        try {
+            System.out.println(account.getRub() + " RUB");
+            System.out.println(account.getUsd() + " USD");
+            System.out.println(account.getEur() + " EUR");
+        } catch (NullPointerException e) {
+            System.out.println("Необходимо создать счет");
+        }
     }
 
     public void getCurrentAccountRubStatus (Account account) {
-        System.out.println(account.getRub() + " RUB");
-    }
-    public void getCurrentAccountUsdStatus (Account account) {
-        System.out.println(account.getUsd() + " USD");
-    }
-    public void getCurrentAccountEurStatus (Account account) {
-        System.out.println(account.getEur() + " EUR");
-    }
-    public void purchaseCurrency (Account account, double firstAmount, String firstCurrency, String secondaryCurrency) {
-
-        if (firstCurrency.equals("RUB")) {
-            if (account.getRub() >= firstAmount) {
-                if (secondaryCurrency.equals("USD")) {
-                    amount = firstAmount / exchangeCurrency.getRurUsdRate();
-                    account.setRub(account.getRub() - firstAmount);
-                    account.setUsd(account.getUsd() + amount);
-                } else if (secondaryCurrency.equals("EUR")) {
-                    amount = firstAmount / exchangeCurrency.getRurEurRate();
-                    account.setRub(account.getRub() - firstAmount);
-                    account.setEur(account.getEur() + amount);
-                } else {
-                    System.out.println("Выбранный обмен недоступен");
-                }
-            } else {
-                System.out.println("Недостаточно средств на счету");
-            }
-        } else if (firstCurrency.equals("USD")) {
-            if (account.getUsd() >= firstAmount) {
-                if (secondaryCurrency.equals("RUB")) {
-                    amount = firstAmount * exchangeCurrency.getRurUsdRate();
-                    account.setUsd(account.getUsd() - firstAmount);
-                    account.setRub(account.getRub() + amount);
-                } else if (secondaryCurrency.equals("EUR")) {
-                    amount = firstAmount * exchangeCurrency.getRurEurRate();
-                    account.setEur(account.getEur() - firstAmount);
-                    account.setRub(account.getRub() + amount);
-                } else {
-                    System.out.println("Выбранный обмен недоступен");
-                }
-            } else {
-                System.out.println("Недостаточно средств на счету");
-            }
-        } else if (firstCurrency.equals("EUR")) {
-            if (account.getEur() >= firstAmount) {
-                if (secondaryCurrency.equals("RUB")) {
-                    amount = firstAmount * exchangeCurrency.getRurEurRate();
-                    account.setEur(account.getEur() - firstAmount);
-                    account.setRub(account.getRub() + amount);
-                } else if (secondaryCurrency.equals("USD")) {
-                    amount = firstAmount / exchangeCurrency.getUsdEurRate();
-                    account.setEur(account.getEur() - firstAmount);
-                    account.setUsd(account.getUsd() + amount);
-                } else {
-                    System.out.println("Выбранный обмен недоступен");
-                }
-            } else {
-                System.out.println("Недостаточно средств на счету");
-            }
-        } else {
-            System.out.println("Данная валюта не поддерживается");
+        try {
+            System.out.println(account.getRub() + " RUB");
+        } catch (NullPointerException e) {
+            System.out.println("Необходимо создать счет");
         }
+    }
 
+    public void getCurrentAccountUsdStatus (Account account) {
+        try {
+            System.out.println(account.getUsd() + " USD");
+        } catch (NullPointerException e) {
+            System.out.println("Необходимо создать счет");
+        }
+    }
+
+    public void getCurrentAccountEurStatus (Account account) {
+        try {
+            System.out.println(account.getEur() + " EUR");
+        } catch (NullPointerException e) {
+            System.out.println("Необходимо создать счет");
+        }
+    }
+
+    public void purchaseUsdRub (Account account, double amountRub) {
+        try {
+            if (account.getRub() >= amountRub) {
+                amount = amountRub / exchangeCurrency.getUsdRurRate();
+                account.setRub(account.getRub() - amountRub);
+                account.setUsd(account.getUsd() + amount);
+            } else {
+                System.out.println("Недостаточно средств на счету");
+            }
+        } catch (NullPointerException e) {
+            System.out.println("Необходимо создать счет");
+        }
+    }
+
+    public void purchaseRubUsd (Account account, double amountUsd) {
+        try {
+            if (account.getUsd() >= amountUsd) {
+                amount = amountUsd * exchangeCurrency.getUsdRurRate();
+                account.setUsd(account.getUsd() - amountUsd);
+                account.setRub(account.getRub() + amount);
+            } else {
+                System.out.println("Недостаточно средств на счету");
+            }
+        } catch (NullPointerException e) {
+            System.out.println("Необходимо создать счет");
+        }
+    }
+
+    public void purchaseEurRub (Account account, double amountRub) {
+        try {
+            if (account.getRub() >= amountRub) {
+                amount = amountRub / exchangeCurrency.getEurRurRate();
+                account.setRub(account.getRub() - amountRub);
+                account.setEur(account.getEur() + amount);
+            } else {
+                System.out.println("Недостаточно средств на счету");
+            }
+        } catch (NullPointerException e) {
+            System.out.println("Необходимо создать счет");
+        }
+    }
+
+    public void purchaseRubEur (Account account, double amountEur) {
+        try {
+            if (account.getEur() >= amountEur) {
+                amount = amountEur * exchangeCurrency.getEurRurRate();
+                account.setEur(account.getEur() - amountEur);
+                account.setRub(account.getRub() + amount);
+            } else {
+                System.out.println("Недостаточно средств на счету");
+            }
+        } catch (NullPointerException e) {
+            System.out.println("Необходимо создать счет");
+        }
+    }
+
+    public void purchaseEurUsd (Account account, double amountUsd) {
+        try {
+            if (account.getUsd() >= amountUsd) {
+                amount = amountUsd * exchangeCurrency.getEurRurRate();
+                account.setEur(account.getEur() - amountUsd);
+                account.setRub(account.getRub() + amount);
+            } else {
+                System.out.println("Выбранный обмен недоступен");
+            }
+        } catch (NullPointerException e) {
+            System.out.println("Необходимо создать счет");
+        }
+    }
+
+    public void purchaseUsdEur (Account account, double amountEur) {
+        try {
+            if (account.getEur() >= amountEur) {
+                amount = amountEur / exchangeCurrency.getEurUsdRate();
+                account.setEur(account.getEur() - amountEur);
+                account.setUsd(account.getUsd() + amount);
+            } else {
+                System.out.println("Недостаточно средств на счету");
+            }
+        } catch (NullPointerException e) {
+            System.out.println("Необходимо создать счет");
+        }
     }
 }

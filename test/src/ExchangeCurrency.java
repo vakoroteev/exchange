@@ -1,36 +1,36 @@
 public class ExchangeCurrency {
-    private double rurUsdRate = 60;
-    private double rurEurRate = 70;
-    private double usdEurRate = 0.857;
+    private double usdRurRate = 60;
+    private double eurRurRate = 70;
+    private double eurUsdRate = 0.857;
 
-    double getRurEurRate() {
-        return rurEurRate;
+    double getEurRurRate() {
+        return eurRurRate;
     }
 
-    public void setRurEurRate(double rurEurRate) {
-        this.rurEurRate = rurEurRate;
+    public void setEurRurRate(double eurRurRate) {
+        this.eurRurRate = eurRurRate;
     }
 
-    double getRurUsdRate() {
-        return rurUsdRate;
+    double getUsdRurRate() {
+        return usdRurRate;
     }
 
-    void setRurUsdRate(double rurUsdRate) {
-        this.rurUsdRate = rurUsdRate;
+    void setUsdRurRate(double usdRurRate) {
+        this.usdRurRate = usdRurRate;
     }
 
-    public double getUsdEurRate() {
-        return usdEurRate;
+    public double getEurUsdRate() {
+        return eurUsdRate;
     }
 
-    void setUsdEurRate(double usdEurRate) {
-        this.usdEurRate = usdEurRate;
+    void setEurUsdRate(double eurUsdRate) {
+        this.eurUsdRate = eurUsdRate;
     }
 
     public void getExchangeRate() {
         System.out.println("Курс валют");
-        System.out.println("RUR/USD: " + getRurUsdRate());
-        System.out.println("RUR/EUR: " + getRurEurRate());
-        System.out.println("USD/EUR: " + getUsdEurRate());
+        System.out.println("USD/RUR: " + getUsdRurRate());
+        System.out.println("EUR/RUR: " + getEurRurRate());
+        System.out.println("EUR/USD: " + getEurUsdRate());
     }
 }
