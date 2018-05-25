@@ -101,7 +101,7 @@ public class AccountManager {
                 account.setEur(account.getEur() - amountUsd);
                 account.setRub(account.getRub() + amount);
             } else {
-                System.out.println("Выбранный обмен недоступен");
+                System.out.println("Недостаточно средств на счету");
             }
         } catch (NullPointerException e) {
             System.out.println("Необходимо создать счет");
