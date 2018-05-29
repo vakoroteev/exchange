@@ -1,5 +1,5 @@
 public class AccountManager {
-    private ExchangeCurrency exchangeCurrency = new ExchangeCurrency();
+    private ExchangeCurrency exchangeCurrency;
     private double amount;
 
     public void getCurrentAccountAllStatus (Account account) {

@@ -7,6 +7,7 @@ public class Menu {
     AccountManager accountManager = new AccountManager();
     DepositCurrency depositCurrency = new DepositCurrency();
     ExchangeCurrency exchangeCurrency = new ExchangeCurrency();
+    CommandMenuEnum commandMenuEnum;
     String[] inputConsole;
 
     private final String[] listCommand = {"createAccount -  создание счёта",
@@ -24,14 +25,20 @@ public class Menu {
             "purchaseUsdEur <сумма> - покупка USD за EUR",
             "exit - выйти из программы"};
 
-    public void printHelp() {
+/*    public void printHelp() {
         System.out.println("Список доступных команд:");
-        for (int i = 0; i < listCommand.length; i++) {
-            System.out.println(listCommand[i]);
+        for (String i:listCommand) {
+            System.out.println(i);
+        }
+    }*/
+    public void printHelp() {
+        for (CommandMenuEnum i:commandMenuEnum.values()) {
+            System.out.println(i + commandMenuEnum.getValue());
         }
     }
 
-    public void selectionMenuItem (BufferedReader reader) {
+
+/*    public void selectionMenuItem (BufferedReader reader) {
         try {
             inputConsole = inputReader(reader);
             switch (inputConsole[0]) {
@@ -91,7 +98,71 @@ public class Menu {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }*/
+
+    public void selectionMenuItem (BufferedReader reader) {
+        try {
+            inputConsole = inputReader(reader);
+            switch (inputConsole[0]) {
+                case "help":
+                    printHelp();
+                    break;
+                case "createAccount":
+                    account = new Account();
+                    System.out.println("Счет создан");
+                    break;
+                case "accountStatusAll":
+                    accountManager.getCurrentAccountAllStatus(account);
+                    break;
+                case "accountStatusRub":
+                    accountManager.getCurrentAccountRubStatus(account);
+                    break;
+                case "accountStatusUsd":
+                    accountManager.getCurrentAccountUsdStatus(account);
+                    break;
+                case "accountStatusEur":
+                    accountManager.getCurrentAccountEurStatus(account);
+                    break;
+                case "depositRub":
+                    depositCurrency.depositRub(account, amountCurrency(inputConsole[1]));
+                    break;
+                case "exchangeRate":
+                    exchangeCurrency.getExchangeRate();
+                    break;
+                case "purchaseRubUsd":
+                    accountManager.purchaseRubUsd(account, amountCurrency(inputConsole[1]));
+                    break;
+                case "purchaseUsdRub":
+                    accountManager.purchaseUsdRub(account, amountCurrency(inputConsole[1]));
+                    break;
+                case "purchaseRubEur":
+                    accountManager.purchaseRubEur(account, amountCurrency(inputConsole[1]));
+                    break;
+                case "purchaseEurRub":
+                    accountManager.purchaseEurRub(account, amountCurrency(inputConsole[1]));
+                    break;
+                case "purchaseUsdEur":
+                    accountManager.purchaseUsdEur(account, amountCurrency(inputConsole[1]));
+                    break;
+                case "purchaseEurUsd":
+                    accountManager.purchaseEurUsd(account, amountCurrency(inputConsole[1]));
+                    break;
+                case "exit":
+                    Main.flagExit = false;
+                    break;
+                default:
+                    System.out.println("Данная команда не поддерживается. Для ввывода списка команд введите help");
+                    break;
+            }
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Не указана сумма");
+        } catch (NumberFormatException ex) {
+            System.out.println("Сумма указана в неверном формате");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
 
     private String[] inputReader(BufferedReader reader) throws IOException {
         String allString;
