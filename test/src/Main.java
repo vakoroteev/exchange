@@ -13,7 +13,7 @@ public class Main {
 
         menu.printHelp();
         while (flagExit) {
-            menu.selectionMenuItem(inputReader.inputReader(reader));
+            menu.selectItemFromMenu(inputReader.inputReader(reader));
         }
     }
 }

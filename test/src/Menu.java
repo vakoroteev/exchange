@@ -11,7 +11,7 @@ public class Menu {
         }
     }
 
-    public void selectionMenuItem (String[] inputConsole) {
+    public void selectItemFromMenu (String[] inputConsole) {
         try {
             switch (inputConsole[0]) {
                 case "help":
