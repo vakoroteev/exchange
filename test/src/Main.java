@@ -8,11 +8,12 @@ public class Main {
     public static void main(String[] args) {
 
         Menu menu = new Menu();
+        InputReader inputReader = new InputReader();
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
         menu.printHelp();
         while (flagExit) {
-            menu.selectionMenuItem(reader);
+            menu.selectionMenuItem(inputReader.inputReader(reader));
         }
     }
 }

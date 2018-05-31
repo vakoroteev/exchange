@@ -1,36 +1,25 @@
 public class AccountManager {
-    private ExchangeCurrency exchangeCurrency;
+
+    ExchangeCurrency exchangeCurrency;
     private double amount;
 
-    public void getCurrentAccountAllStatus (Account account) {
+    public void getCurrentAccountCurrencyStatus (Account account, String currency) {
         try {
-            System.out.println(account.getRub() + " RUB");
-            System.out.println(account.getUsd() + " USD");
-            System.out.println(account.getEur() + " EUR");
-        } catch (NullPointerException e) {
-            System.out.println("Необходимо создать счет");
-        }
-    }
-
-    public void getCurrentAccountRubStatus (Account account) {
-        try {
-            System.out.println(account.getRub() + " RUB");
-        } catch (NullPointerException e) {
-            System.out.println("Необходимо создать счет");
-        }
-    }
-
-    public void getCurrentAccountUsdStatus (Account account) {
-        try {
-            System.out.println(account.getUsd() + " USD");
-        } catch (NullPointerException e) {
-            System.out.println("Необходимо создать счет");
-        }
-    }
-
-    public void getCurrentAccountEurStatus (Account account) {
-        try {
-            System.out.println(account.getEur() + " EUR");
+            if (currency.equals("ALL")) {
+                System.out.println(account.getRub() + " RUB");
+                System.out.println(account.getUsd() + " USD");
+                System.out.println(account.getEur() + " EUR");
+            } else if (currency.equals("RUB")) {
+                System.out.println(account.getRub() + " RUB");
+            } else if (currency.equals("EUR")) {
+                System.out.println(account.getEur() + " EUR");
+            } else if (currency.equals("USD")) {
+                System.out.println(account.getUsd() + " USD");
+            } else if (currency.equals(null)) {
+                System.out.println("Укажите валюту");
+            } else {
+                System.out.println("Данная валюта не поддерживается");
+            }
         } catch (NullPointerException e) {
             System.out.println("Необходимо создать счет");
         }
