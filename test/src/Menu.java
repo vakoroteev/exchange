@@ -1,17 +1,23 @@
 public class Menu {
 
     Account account = null;
-    AccountManager accountManager = new AccountManager();
-    DepositCurrency depositCurrency = new DepositCurrency();
-    ExchangeCurrency exchangeCurrency = new ExchangeCurrency();
+    private final AccountManager accountManager;
+    private final DepositCurrency depositCurrency;
+    private final ExchangeCurrency exchangeCurrency;
+
+    public Menu(AccountManager accountManager, DepositCurrency depositCurrency, ExchangeCurrency exchangeCurrency) {
+        this.accountManager = accountManager;
+        this.depositCurrency = depositCurrency;
+        this.exchangeCurrency = exchangeCurrency;
+    }
 
     public void printHelp() {
-        for (CommandMenuEnum i: CommandMenuEnum.values()) {
+        for (CommandMenu i : CommandMenu.values()) {
             System.out.println(i + " - " + i.getValue());
         }
     }
 
-    public void selectItemFromMenu (String[] inputConsole) {
+    public void selectItemFromMenu(String[] inputConsole) {
         try {
             switch (inputConsole[0]) {
                 case "help":
@@ -62,7 +68,7 @@ public class Menu {
         }
     }
 
-    private double amountCurrency (String stringAmountCorrency) {
+    private double amountCurrency(String stringAmountCorrency) {
         return Double.parseDouble(stringAmountCorrency);
     }
 }

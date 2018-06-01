@@ -6,8 +6,7 @@ public class InputReader {
     private String[] inputConsole;
 
     public String[] inputReader (BufferedReader reader) {
-        inputConsole = inputSplit(reader);
-        return inputConsole;
+        return inputSplit(reader);
     }
 
     private String[] inputSplit (BufferedReader reader)  {

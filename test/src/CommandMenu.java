@@ -1,6 +1,6 @@
 import java.lang.*;
 
-public enum CommandMenuEnum {
+public enum CommandMenu {
 
     CreateAccount("Создание счета"),
     AccountStatusCurrency("Проверить состояния <валюта> части счета (ALL для проверки общего счета)"),
@@ -16,12 +16,11 @@ public enum CommandMenuEnum {
 
     private String value;
 
-    CommandMenuEnum(String value) {
+    CommandMenu(String value) {
         this.value = value;
     }
 
     public String getValue() {
         return value;
     }
-
 }

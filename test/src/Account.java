@@ -1,4 +1,5 @@
 public class Account {
+
     private String firstName;
     private double rub;
     private double usd;
