@@ -1,4 +1,4 @@
-import java.lang.*;
+package my.pack;
 
 public enum CommandMenu {
 

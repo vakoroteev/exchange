@@ -1,8 +1,11 @@
+package my.pack;
+
+import my.pack.Account.AccountManager;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 public class Main {
-
     public static Boolean flagExit = true;
 
     public static void main(String[] args) {
