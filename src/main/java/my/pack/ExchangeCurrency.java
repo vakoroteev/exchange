@@ -1,9 +1,11 @@
+package my.pack;
+
 public class ExchangeCurrency {
     private double usdRurRate = 60;
     private double eurRurRate = 70;
     private double eurUsdRate = 0.857;
 
-    double getEurRurRate() {
+    public double getEurRurRate() {
         return eurRurRate;
     }
 
@@ -11,11 +13,11 @@ public class ExchangeCurrency {
         this.eurRurRate = eurRurRate;
     }
 
-    double getUsdRurRate() {
+    public double getUsdRurRate() {
         return usdRurRate;
     }
 
-    void setUsdRurRate(double usdRurRate) {
+    public void setUsdRurRate(double usdRurRate) {
         this.usdRurRate = usdRurRate;
     }
 
@@ -23,7 +25,7 @@ public class ExchangeCurrency {
         return eurUsdRate;
     }
 
-    void setEurUsdRate(double eurUsdRate) {
+    public void setEurUsdRate(double eurUsdRate) {
         this.eurUsdRate = eurUsdRate;
     }
 

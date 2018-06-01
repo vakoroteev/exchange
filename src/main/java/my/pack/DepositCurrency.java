@@ -1,3 +1,7 @@
+package my.pack;
+
+import my.pack.Account.Account;
+
 public class DepositCurrency {
     public void depositRub (Account account, double amount) {
         try {

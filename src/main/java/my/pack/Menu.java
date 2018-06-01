@@ -1,6 +1,11 @@
+package my.pack;
+
+import my.pack.Account.AccountManager;
+import my.pack.Account.Account;
+
 public class Menu {
 
-    Account account = null;
+    private Account account = null;
     private final AccountManager accountManager;
     private final DepositCurrency depositCurrency;
     private final ExchangeCurrency exchangeCurrency;
@@ -72,4 +77,3 @@ public class Menu {
         return Double.parseDouble(stringAmountCorrency);
     }
 }
-

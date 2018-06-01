@@ -1,3 +1,5 @@
+package my.pack.Account;
+
 public class Account {
 
     private String firstName;
@@ -33,3 +35,4 @@ public class Account {
         this.firstName = firstName;
     }
 }
+

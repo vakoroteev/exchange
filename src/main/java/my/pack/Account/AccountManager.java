@@ -1,3 +1,7 @@
+package my.pack.Account;
+
+import my.pack.ExchangeCurrency;
+
 public class AccountManager {
 
     ExchangeCurrency exchangeCurrency;
