@@ -1,9 +1,15 @@
 package my.pack;
 
 public class ExchangeCurrency {
-    private double usdRurRate = 60;
-    private double eurRurRate = 70;
-    private double eurUsdRate = 0.857;
+    private double usdRurRate;
+    private double eurRurRate;
+    private double eurUsdRate;
+
+    public ExchangeCurrency () {
+        usdRurRate = 60;
+        eurRurRate = 70;
+        eurUsdRate = 0.857;
+    }
 
     public double getEurRurRate() {
         return eurRurRate;
