@@ -1,14 +1,69 @@
 package my.pack.Account;
 
+import my.pack.CommandMenu.Permission;
 import my.pack.ExchangeCurrency;
+import my.pack.Menu;
+
+import java.util.HashMap;
 
 public class AccountManager {
 
-    ExchangeCurrency exchangeCurrency;
+    private ExchangeCurrency exchangeCurrency;
     private double amount;
 
-    public void getCurrentAccountCurrencyStatus (Account account, String currency) {
-        try {
+    public AccountManager(ExchangeCurrency exchangeCurrency) {
+        this.exchangeCurrency = exchangeCurrency;
+    }
+
+    public void createAccount(HashMap accountLogin, String login, String role, Permission permission) {
+
+        if (login != null && role != null && (role.equals("admin") || role.equals("client"))) {
+            Account account = new Account();
+            accountLogin.put(login, account);
+            Permission per = permission.getPermission(role);
+            account.setRole(per);
+            account.setLogin(login);
+            System.out.println("Создан аккаунт с ролью " + per.getValue());
+        } else if (login == null) {
+            System.out.println("Необходимо указать логин");
+        } else if (role == null) {
+            System.out.println("Необходимо указать роль");
+        } else if (role != null) {
+            System.out.println("Роль может быть либо client, либо admin");
+        } else {
+            System.out.println("При создании аккаунта что то пошло не так, проверьте введенные данные");
+        }
+    }
+
+    public Account logIn(HashMap accountLogin, String login) {
+        if (login != null) {
+            Account account = (Account) accountLogin.get(login);
+            if (account != null) {
+                Menu.permission = account.getRole();
+                System.out.println("Пользователь с логином " + login + " успешно вошел в систему");
+                return account;
+            } else {
+                System.out.println("Клиента с таким логином нет в системе");
+                return null;
+            }
+        } else {
+            System.out.println("Необходимо указать логин");
+            return null;
+        }
+    }
+
+    public Account logOut(Account account) {
+        if (account != null) {
+            System.out.println("Осуществлен выход из системы");
+        } else {
+            System.out.println("Вход в систему не осуществлен");
+        }
+        Menu.permission = Permission.UNAUTHORISED;
+        return account = null;
+    }
+
+    public void getCurrentAccountCurrencyStatus(Account account, String currency) {
+        if (account != null) {
             if (currency.equals("ALL")) {
                 System.out.println(account.getRub() + " RUB");
                 System.out.println(account.getUsd() + " USD");
@@ -24,12 +79,12 @@ public class AccountManager {
             } else {
                 System.out.println("Данная валюта не поддерживается");
             }
-        } catch (NullPointerException e) {
+        } else {
             System.out.println("Необходимо создать счет");
         }
     }
 
-    public void purchaseUsdRub (Account account, double amountRub) {
+    public void purchaseUsdRub(Account account, double amountRub) {
         try {
             if (account.getRub() >= amountRub) {
                 amount = amountRub / exchangeCurrency.getUsdRurRate();
@@ -43,7 +98,7 @@ public class AccountManager {
         }
     }
 
-    public void purchaseRubUsd (Account account, double amountUsd) {
+    public void purchaseRubUsd(Account account, double amountUsd) {
         try {
             if (account.getUsd() >= amountUsd) {
                 amount = amountUsd * exchangeCurrency.getUsdRurRate();
@@ -57,7 +112,7 @@ public class AccountManager {
         }
     }
 
-    public void purchaseEurRub (Account account, double amountRub) {
+    public void purchaseEurRub(Account account, double amountRub) {
         try {
             if (account.getRub() >= amountRub) {
                 amount = amountRub / exchangeCurrency.getEurRurRate();
@@ -71,7 +126,7 @@ public class AccountManager {
         }
     }
 
-    public void purchaseRubEur (Account account, double amountEur) {
+    public void purchaseRubEur(Account account, double amountEur) {
         try {
             if (account.getEur() >= amountEur) {
                 amount = amountEur * exchangeCurrency.getEurRurRate();
@@ -85,7 +140,7 @@ public class AccountManager {
         }
     }
 
-    public void purchaseEurUsd (Account account, double amountUsd) {
+    public void purchaseEurUsd(Account account, double amountUsd) {
         try {
             if (account.getUsd() >= amountUsd) {
                 amount = amountUsd * exchangeCurrency.getEurRurRate();
@@ -99,7 +154,7 @@ public class AccountManager {
         }
     }
 
-    public void purchaseUsdEur (Account account, double amountEur) {
+    public void purchaseUsdEur(Account account, double amountEur) {
         try {
             if (account.getEur() >= amountEur) {
                 amount = amountEur / exchangeCurrency.getEurUsdRate();

@@ -4,10 +4,10 @@ import my.pack.Account.Account;
 
 public class DepositCurrency {
     public void depositRub (Account account, double amount) {
-        try {
+        if (account != null) {
             account.setRub(amount);
             System.out.println("Успешное пополнение счета на " + amount + " RUB");
-        } catch (NullPointerException e) {
+        } else {
             System.out.println("Необходимо создать счет");
         }
     }
