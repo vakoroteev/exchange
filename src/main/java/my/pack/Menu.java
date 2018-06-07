@@ -10,19 +10,19 @@ public class Menu {
 
     private Account account;
     public static Permission permission;
-    private ListCoomandForPermission listCoomandForPermission;
+    private ListCommandForPermission listCommandForPermission;
     private final HashMap accountLogin;
     private final AccountManager accountManager;
     private final DepositCurrency depositCurrency;
     private final ExchangeCurrency exchangeCurrency;
 
-    public Menu(Account account, AccountManager accountManager, DepositCurrency depositCurrency, ExchangeCurrency exchangeCurrency, HashMap accountLogin, ListCoomandForPermission listCoomandForPermission) {
+    public Menu(Account account, AccountManager accountManager, DepositCurrency depositCurrency, ExchangeCurrency exchangeCurrency, HashMap accountLogin, ListCommandForPermission listCommandForPermission) {
         this.account = account;
         this.accountManager = accountManager;
         this.depositCurrency = depositCurrency;
         this.exchangeCurrency = exchangeCurrency;
         this.accountLogin = accountLogin;
-        this.listCoomandForPermission = listCoomandForPermission;
+        this.listCommandForPermission = listCommandForPermission;
     }
 
     public void printHelp(Account account) {
@@ -32,7 +32,7 @@ public class Menu {
         } else {
             permission = account.getRole();
         }
-        listCommand = listCoomandForPermission.getListCoomandForPermission(account);
+        listCommand = listCommandForPermission.getListCommandForPermission(account);
         switch (permission) {
             case CLIENT:
                 printListCommandForPermission(listCommand);
@@ -47,7 +47,7 @@ public class Menu {
     }
 
     public boolean checkPermission(Account account, CommandMenu command) {
-        CommandMenu[] listCommand = listCoomandForPermission.getListCoomandForPermission(account);
+        CommandMenu[] listCommand = listCommandForPermission.getListCommandForPermission(account);
         if (command == CommandMenu.DEFAULT) {
             System.out.println(command.getValue());
             return false;

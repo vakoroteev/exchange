@@ -2,9 +2,9 @@ package my.pack.CommandMenu;
 
 import my.pack.Account.Account;
 
-public class ListCoomandForPermission {
+public class ListCommandForPermission {
 
-    public CommandMenu[] getListCoomandForPermission(Account account) {
+    public CommandMenu[] getListCommandForPermission(Account account) {
         if (account != null) {
             switch (account.getRole()) {
                 case ADMIN:
