@@ -4,6 +4,7 @@ import my.pack.Account.AccountManager;
 import my.pack.Account.Account;
 import my.pack.CommandMenu.*;
 
+import java.math.BigDecimal;
 import java.util.*;
 
 public class Menu {
@@ -138,7 +139,7 @@ public class Menu {
         }
     }
 
-    private double amountCurrency(String stringAmountCorrency) {
-        return Double.parseDouble(stringAmountCorrency);
+    private BigDecimal amountCurrency(String stringAmountCorrency) {
+        return new BigDecimal(stringAmountCorrency);
     }
 }
