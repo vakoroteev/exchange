@@ -4,12 +4,13 @@ import my.pack.CommandMenu.Permission;
 import my.pack.ExchangeCurrency;
 import my.pack.Menu;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 
 public class AccountManager {
 
     private ExchangeCurrency exchangeCurrency;
-    private double amount;
+    private BigDecimal amount;
 
     public AccountManager(ExchangeCurrency exchangeCurrency) {
         this.exchangeCurrency = exchangeCurrency;
@@ -84,12 +85,12 @@ public class AccountManager {
         }
     }
 
-    public void purchaseUsdRub(Account account, double amountRub) {
+    public void purchaseUsdRub(Account account, BigDecimal amountRub) {
         try {
-            if (account.getRub() >= amountRub) {
-                amount = amountRub / exchangeCurrency.getUsdRurRate();
-                account.setRub(account.getRub() - amountRub);
-                account.setUsd(account.getUsd() + amount);
+            if ((account.getRub().compareTo(amountRub)) >= 0) {
+                amount = amountRub.divide(exchangeCurrency.getUsdRurRate(), 2,2);
+                account.setRub(account.getRub().subtract(amountRub));
+                account.setUsd(account.getUsd().add(amount));
             } else {
                 System.out.println("Недостаточно средств на счету");
             }
@@ -98,12 +99,12 @@ public class AccountManager {
         }
     }
 
-    public void purchaseRubUsd(Account account, double amountUsd) {
+    public void purchaseRubUsd(Account account, BigDecimal amountUsd) {
         try {
-            if (account.getUsd() >= amountUsd) {
-                amount = amountUsd * exchangeCurrency.getUsdRurRate();
-                account.setUsd(account.getUsd() - amountUsd);
-                account.setRub(account.getRub() + amount);
+            if ((account.getUsd().compareTo(amountUsd)) >= 0) {
+                amount = amountUsd.multiply(exchangeCurrency.getUsdRurRate());
+                account.setUsd(account.getUsd().subtract(amountUsd));
+                account.setRub(account.getRub().add(amount));
             } else {
                 System.out.println("Недостаточно средств на счету");
             }
@@ -112,12 +113,12 @@ public class AccountManager {
         }
     }
 
-    public void purchaseEurRub(Account account, double amountRub) {
+    public void purchaseEurRub(Account account, BigDecimal amountRub) {
         try {
-            if (account.getRub() >= amountRub) {
-                amount = amountRub / exchangeCurrency.getEurRurRate();
-                account.setRub(account.getRub() - amountRub);
-                account.setEur(account.getEur() + amount);
+            if ((account.getRub().compareTo(amountRub)) >= 0) {
+                amount = amountRub.divide(exchangeCurrency.getEurRurRate(), 2,2);
+                account.setRub(account.getRub().subtract(amountRub));
+                account.setEur(account.getEur().add(amount));
             } else {
                 System.out.println("Недостаточно средств на счету");
             }
@@ -126,12 +127,12 @@ public class AccountManager {
         }
     }
 
-    public void purchaseRubEur(Account account, double amountEur) {
+    public void purchaseRubEur(Account account, BigDecimal amountEur) {
         try {
-            if (account.getEur() >= amountEur) {
-                amount = amountEur * exchangeCurrency.getEurRurRate();
-                account.setEur(account.getEur() - amountEur);
-                account.setRub(account.getRub() + amount);
+            if ((account.getEur().compareTo(amountEur)) >= 0) {
+                amount = amountEur.multiply(exchangeCurrency.getEurRurRate());
+                account.setEur(account.getEur().subtract(amountEur));
+                account.setRub(account.getRub().add(amount));
             } else {
                 System.out.println("Недостаточно средств на счету");
             }
@@ -140,12 +141,12 @@ public class AccountManager {
         }
     }
 
-    public void purchaseEurUsd(Account account, double amountUsd) {
+    public void purchaseEurUsd(Account account, BigDecimal amountUsd) {
         try {
-            if (account.getUsd() >= amountUsd) {
-                amount = amountUsd * exchangeCurrency.getEurRurRate();
-                account.setEur(account.getEur() - amountUsd);
-                account.setRub(account.getRub() + amount);
+            if ((account.getUsd().compareTo(amountUsd)) >= 0) {
+                amount = amountUsd.multiply(exchangeCurrency.getEurRurRate());
+                account.setEur(account.getEur().subtract(amountUsd));
+                account.setRub(account.getRub().add(amount));
             } else {
                 System.out.println("Недостаточно средств на счету");
             }
@@ -154,12 +155,12 @@ public class AccountManager {
         }
     }
 
-    public void purchaseUsdEur(Account account, double amountEur) {
+    public void purchaseUsdEur(Account account, BigDecimal amountEur) {
         try {
-            if (account.getEur() >= amountEur) {
-                amount = amountEur / exchangeCurrency.getEurUsdRate();
-                account.setEur(account.getEur() - amountEur);
-                account.setUsd(account.getUsd() + amount);
+            if ((account.getEur().compareTo(amountEur)) >=0) {
+                amount = amountEur.divide(exchangeCurrency.getEurUsdRate(), 2,2);
+                account.setEur(account.getEur().subtract(amountEur));
+                account.setUsd(account.getUsd().add(amount));
             } else {
                 System.out.println("Недостаточно средств на счету");
             }

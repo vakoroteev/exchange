@@ -1,37 +1,40 @@
 package my.pack;
 
+import java.math.BigDecimal;
+
 public class ExchangeCurrency {
-    private double usdRurRate;
-    private double eurRurRate;
-    private double eurUsdRate;
+
+    private BigDecimal usdRurRate;
+    private BigDecimal eurRurRate;
+    private BigDecimal eurUsdRate;
 
     public ExchangeCurrency () {
-        usdRurRate = 60;
-        eurRurRate = 70;
-        eurUsdRate = 0.857;
+        usdRurRate = new BigDecimal(60);
+        eurRurRate = new BigDecimal(70);
+        eurUsdRate = new BigDecimal(0.857);
     }
 
-    public double getEurRurRate() {
+    public BigDecimal getEurRurRate() {
         return eurRurRate;
     }
 
-    public void setEurRurRate(double eurRurRate) {
+    public void setEurRurRate(BigDecimal eurRurRate) {
         this.eurRurRate = eurRurRate;
     }
 
-    public double getUsdRurRate() {
+    public BigDecimal getUsdRurRate() {
         return usdRurRate;
     }
 
-    public void setUsdRurRate(double usdRurRate) {
+    public void setUsdRurRate(BigDecimal usdRurRate) {
         this.usdRurRate = usdRurRate;
     }
 
-    public double getEurUsdRate() {
+    public BigDecimal getEurUsdRate() {
         return eurUsdRate;
     }
 
-    public void setEurUsdRate(double eurUsdRate) {
+    public void setEurUsdRate(BigDecimal eurUsdRate) {
         this.eurUsdRate = eurUsdRate;
     }
 

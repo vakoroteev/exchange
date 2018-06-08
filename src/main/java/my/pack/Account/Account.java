@@ -2,35 +2,43 @@ package my.pack.Account;
 
 import my.pack.CommandMenu.Permission;
 
+import java.math.BigDecimal;
+
 public class Account {
 
     private String login;
     private Permission role;
-    private double rub;
-    private double usd;
-    private double eur;
+    private BigDecimal rub;
+    private BigDecimal usd;
+    private BigDecimal eur;
 
-    public double getRub() {
+    Account() {
+        this.rub = new BigDecimal(0);
+        this.usd = new BigDecimal(0);
+        this.eur = new BigDecimal(0);
+    }
+
+    public BigDecimal getRub() {
         return rub;
     }
 
-    public void setRub(double rub) {
+    public void setRub(BigDecimal rub) {
         this.rub = rub;
     }
 
-    public double getUsd() {
+    public BigDecimal getUsd() {
         return usd;
     }
 
-    public void setUsd(double usd) {
+    public void setUsd(BigDecimal usd) {
         this.usd = usd;
     }
 
-    public double getEur() {
+    public BigDecimal getEur() {
         return eur;
     }
 
-    public void setEur(double eur) {
+    public void setEur(BigDecimal eur) {
         this.eur = eur;
     }
 
