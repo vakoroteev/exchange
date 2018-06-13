@@ -8,6 +8,10 @@ public class Account {
 
     private String login;
     private Permission role;
+    
+    // В такой реализации избежать копипасты при переводе все равно не удалось. 
+    // Попробуй завести под хранение валют специальный map, ключом которого является код валюты, а значением - сумма.
+    // Если сделать так, то копипаста с переводом должна будет уйти.
     private BigDecimal rub;
     private BigDecimal usd;
     private BigDecimal eur;
